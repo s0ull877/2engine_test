@@ -130,3 +130,14 @@ if DEBUG:
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# RabbitMQ
+MQ_USER=os.getenv('MQ_USER', 'guest')
+MQ_PASSWORD=os.getenv('MQ_PASSWORD')
+MQ_HOST=os.getenv('MQ_HOST', '127.0.0.1')
+MQ_PORT=os.getenv('MQ_PORT', 5672)
+MQ_VHOST=os.getenv('MQ_VHOST')
+
+# Celery
+
+CELERY_BROKER_URL = f'amqp://{MQ_USER}:{MQ_PASSWORD}@{MQ_HOST}:{MQ_PORT}/{MQ_VHOST}'
