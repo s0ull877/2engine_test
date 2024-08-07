@@ -3,12 +3,13 @@ from .models import Task
 from time import sleep
 
 @shared_task()
-def process(task: Task):
+def process(task_id: int):
 
-    task.status += 1
+    task = Task.objects.get(id=task_id)
+    task.status = Task.IN_PROGRESS 
     task.save()
 
     sleep(10)
 
-    task.status += 1
+    task.status = Task.COMPETED
     task.save()

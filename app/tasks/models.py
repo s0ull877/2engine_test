@@ -1,3 +1,4 @@
+from typing import Iterable
 from django.db import models
 
 class Task(models.Model):
@@ -14,7 +15,7 @@ class Task(models.Model):
 
     name = models.CharField(max_length=150, verbose_name='Task name')
     description = models.TextField(blank=True, null=True, verbose_name='Description')
-    status = models.PositiveSmallIntegerField(default=QUEUE, choices=STATUSES, verbose_name='Status')
+    status = models.PositiveSmallIntegerField(null=True, blank=True, verbose_name='Status', default=QUEUE, choices=STATUSES)
 
     class Meta:
 
